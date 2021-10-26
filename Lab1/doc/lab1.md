@@ -1,4 +1,4 @@
-#### 19302010011 王海伟
+#### 19302010011 王海伟 [lab1.pdf](lab1.pdf) 
 
 ### part1：**3**－8**译码器 **decoder 设计
 
@@ -133,5 +133,5 @@ rtype：
 
 ![](D:\code\Github\SOFT130021.01_Digital_Design\Lab1\doc\attachment\lab1_3_arch.png)
 
-这边比较需要思考的就是control unit这么多输出的原因是什么，其实直接看架构图的话比较清晰，每一个输出值都代表了这个值所代表的wire是否连通，或者充当了一个选择器的作用。举个例子，对于add，首先它是r-type（所有的rtype除了alucontrol都一样），它需要寄存器写，RegWrite为1， RegDst需要选择15：11的bit位置，为1，alusrc为0，使数据来自寄存器，ALUcontrol由alu译码器产生，branch不需要，为0，MemWrite和MemtoReg也不需要要，都为0。实际上这个过程就是在分析这条指令执行是的datapath。
+这边比较需要思考的就是control unit这么多输出的原因是什么，其实直接看架构图的话比较清晰，每一个输出值都代表了这个值所代表的wire是否连通，或者充当了一个选择器的作用。举个例子，对于add，首先它是r-type（所有的rtype除了alucontrol都一样），它需要寄存器写，RegWrite为1， RegDst需要选择15：11的bit位置，为1，alusrc为0，使数据来自寄存器，ALUcontrol由alu译码器产生，branch不需要，为0，MemWrite和MemtoReg也不需要要，都为0。实际上这个过程就是在分析这条指令执行时的datapath。
 
