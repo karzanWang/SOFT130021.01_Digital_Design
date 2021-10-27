@@ -26,25 +26,26 @@ module controlUnit_mainDecoder(
     output  branch, alusrc,
     output  regdst, regwrite,
     output jump,
-    output  [1:0] aluop
+    output  [2:0] aluop
 );
 
-    reg [8:0] controls;
+    reg [9:0] controls;
 
     assign {regwrite, regdst, alusrc, branch,
     memwrite, memtoreg, jump, aluop} = controls;
 
     always @(*)begin
         case(op)
-            6'b000000: controls <= 9'b110000010; //rtype
-            6'b100011: controls <= 9'b101001000; //LW
-            6'b101011: controls <= 9'b001010000; //SW
-            6'b000100: controls <= 9'b000100001; //beq
-            6'b001000: controls <= 9'b101000000; //addi
-            6'b000010: controls <= 9'b000000100; //j
-            6'b000110: controls <= 9'b101000010; //andi
-            6'b001101: controls <= 9'b101000010; //ori
-            6'b001010: controls <= 9'b101000010; //slti 
+            6'b000000: controls <= 10'b1100000110; //rtype
+            6'b100011: controls <= 10'b1010010000; //LW
+            6'b101011: controls <= 10'b0010100000; //SW
+            6'b000100: controls <= 10'b0001000001; //beq
+            6'b001000: controls <= 10'b1010000000; //addi
+            6'b000010: controls <= 10'b0000001xxx; //j
+            6'b000110: controls <= 10'b1010000100; //andi
+            6'b001101: controls <= 10'b1010000011; //ori
+            6'b001010: controls <= 10'b1010000010; //slti 
+            6'b111111: controls <= 10'b1010000101; //nop
             default: controls <= 9'bxxxxxxxx; //???
         endcase
     end

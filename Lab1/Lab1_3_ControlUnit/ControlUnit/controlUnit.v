@@ -6,10 +6,11 @@ module ControlUnit(
     output  memtoreg, memwrite,
     output  pcsrc, alusrc,
     output  regdst, regwrite,
+    output jump,
     output  [2:0] alucontrol
 );
 
-    wire [1:0] aluop;
+    wire [2:0] aluop;
     wire branch;
 
     controlUnit_mainDecoder md(op, memtoreg, memwrite, 

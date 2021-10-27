@@ -28,9 +28,10 @@ module test_controlUnit(
     wire memtoreg, memwrite;
     wire pcsrc, alusrc;
     wire  regdst, regwrite;
+    wire jump;
     wire  [2:0] alucontrol;
 
-    ControlUnit M(op, funct, zero, memtoreg, memwrite, pcsrc, alusrc, regdst, regwrite, alucontrol);
+    ControlUnit M(op, funct, zero, memtoreg, memwrite, pcsrc, alusrc, regdst, regwrite, jump, alucontrol);
 
     initial begin
         op = 6'b000000; funct = 6'b100000; //add
@@ -44,11 +45,11 @@ module test_controlUnit(
         #0.001  op = 6'b001000; funct = 6'b000000; //addi
         #0.001  op = 6'b000100; funct = 6'b000000; //beq
         #0.001  op = 6'b000010; funct = 6'b000000; //j
-        #0.001  op = 6'b001101; funct = 6'b100101; //ori
-        #0.001  op = 6'b000110; funct = 6'b100000; //andi
-        #0.001  op = 6'b001010; funct = 6'b101010; //slti
+        #0.001  op = 6'b001101; funct = 6'b000000; //ori
+        #0.001  op = 6'b000110; funct = 6'b000000; //andi
+        #0.001  op = 6'b001010; funct = 6'b000000; //slti
         
-        #0.001  op = 6'b000000; funct = 6'b111111; //nop
+        #0.001  op = 6'b1111111; funct = 6'b000000; //nop
         #2;
     end
 endmodule
